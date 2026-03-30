@@ -5,17 +5,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path(
-        "admin/", admin.site.urls),
-    path(
-        "", include("taxi.urls",
-        namespace="taxi")),
+    path("admin/", admin.site.urls),
+    path("", include("taxi.urls", namespace="taxi")),
     path(
         "accounts/login/",
-         LoginView.as_view(template_name="registration/login.html"),
-        name="login"),
+        LoginView.as_view(template_name="registration/login.html"),
+        name="login",
+    ),
     path(
         "accounts/logout/",
         LogoutView.as_view(next_page="login"),
-        name="logout"),
+        name="logout",
+    ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
